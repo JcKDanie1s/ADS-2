@@ -13,7 +13,7 @@ return value;
 
 uint64_t fact(uint16_t n) {
 uint64_t res;
-if (n = 0) {
+if (n == 0) {
 res = 1;
 return res;
 }
@@ -27,7 +27,7 @@ return pown(x, n) / fact(n);
 
 double expn(double x, uint16_t count) {
 double sum = 1;
-for(count; count > 0; count--) {
+for (count; count > 0; count--) {
 sum = calcItem(x, count) + sum;
 }
 return sum;
