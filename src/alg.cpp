@@ -5,16 +5,18 @@
 
 double pown(double value, uint16_t n) {
 if (n == 1) {
-        return value;
-    }
-    return value * pown(value, n - 1);
+return value;
+} else if (n == 0) {
+return 1;
+}
+return value * pown(value, --n);
 }
 
 uint64_t fact(uint16_t n) {
- if (n == 0) {
-        return 1;
-    }
-    return n * fact(n - 1);
+if (n <= 1) {
+return 1;
+}
+return n * fact(n - 1);
 }
 
 double calcItem(double x, uint16_t n) {
@@ -22,24 +24,25 @@ return pown(x, n) / fact(n);
 }
 
 double expn(double x, uint16_t count) {
-if (count == 0) {
-        return 1;
-    }
-    return calcItem(x, count) + expn(x, count - 1);
+double sum = 0;
+for (uint16_t i = 0, n = 0; i <= count; ++i, ++n) {
+sum += calcItem(x, n);
+}
+return sum;
 }
 
 double expn(double x, uint16_t count) {
-if (count == 1) {
-        return x;
-    }
-    return calcItem(x, 2 * count - 1) * pown(-1, count - 1) +
-    sinn(x, count - 1);
+double sum = 0;
+for (uint16_t i = 1, n = 1; i <= count; ++i, ++n) {
+sum += pown(-1, n - 1) * calcItem(x, 2 * n - 1);
+}
+return sum;
 }
 
 double sinn(double x, uint16_t count) {
- if (count == 1) {
-        return 1;
-    }
-    return calcItem(x, 2 * count - 2) * pown(-1, count - 1) +
-    cosn(x, count - 1);
+double sum = 0;
+for (uint16_t i = 1, n = 1; i <= count; ++i, ++n) {
+sum += pown(-1, n - 1) * calcItem(x, 2 * n - 2);
+}
+return sum;
 }
